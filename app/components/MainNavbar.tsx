@@ -26,12 +26,16 @@ export default function MainNavbar({ language, setLanguage }: MainNavbarProps) {
 
   return (
     <nav className="w-full bg-[#020617] text-white sticky top-0 z-40 backdrop-blur-sm bg-opacity-90">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <div className="max-w-6xl mx-auto px-8 py-3 flex items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <span className="text-xl md:text-2xl font-bold text-[#1D4ED8]">
-            Scale Up
-          </span>
-          <span className="text-xl md:text-2xl font-bold">IA</span>
+          <div className="flex items-center h-[4rem] p-5">
+            <div className="rotate-90">
+              <img
+                src="/LogoClaro.png"
+                className="w-[8rem] object-contain"
+              />
+            </div>
+          </div>
         </div>
 
         <div className="flex items-center gap-4 md:gap-6">
@@ -84,14 +88,12 @@ export default function MainNavbar({ language, setLanguage }: MainNavbarProps) {
           >
             <span className="block w-4 h-[2px] bg-white rounded-full relative">
               <span
-                className={`block w-4 h-[2px] bg-white rounded-full absolute -top-1.5 transition-transform ${
-                  open ? "translate-y-1.5 rotate-45" : ""
-                }`}
+                className={`block w-4 h-[2px] bg-white rounded-full absolute -top-1.5 transition-transform ${open ? "translate-y-1.5 rotate-45" : ""
+                  }`}
               />
               <span
-                className={`block w-4 h-[2px] bg-white rounded-full absolute top-1.5 transition-transform ${
-                  open ? "-translate-y-1.5 -rotate-45" : ""
-                }`}
+                className={`block w-4 h-[2px] bg-white rounded-full absolute top-1.5 transition-transform ${open ? "-translate-y-1.5 -rotate-45" : ""
+                  }`}
               />
             </span>
           </button>

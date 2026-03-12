@@ -30,7 +30,7 @@ export default function FirstView() {
               id="hero-heading"
               className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-tight mb-6 fade-in-up fade-in-up-delay-1"
             >
-              EscaleUp your business
+              ScaleUp your business
               <br />
               <span className="text-secondary text-[#1D4ED8]">intelligently</span>
             </h1>
@@ -88,9 +88,9 @@ export default function FirstView() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-primary-foreground/30 rounded-full flex items-start justify-center p-2">
-            <div className="w-1.5 h-3 bg-primary-foreground/50 rounded-full" />
+        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
+            <div className="w-1.5 h-3 bg-white/50 rounded-full" />
           </div>
         </div>
       </section>  );
