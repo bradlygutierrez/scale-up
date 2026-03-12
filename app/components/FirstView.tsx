@@ -2,7 +2,7 @@
 export default function FirstView() {
     return (
         <section
-        className="hero-gradient min-h-screen flex items-center relative overflow-hidden"
+        className="hero-gradient min-h-screen flex items-center relative overflow-hidden p-3"
         aria-labelledby="hero-heading"
       >
 
