@@ -2,7 +2,7 @@
 export default function PrimeraVista() {
     return (
         <section
-        className="hero-gradient min-h-screen flex items-center relative overflow-hidden"
+        className="hero-gradient min-h-screen flex items-center relative overflow-hidden p-3"
         aria-labelledby="hero-heading"
       >
 
@@ -87,9 +87,9 @@ export default function PrimeraVista() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-primary-foreground/30 rounded-full flex items-start justify-center p-2">
-            <div className="w-1.5 h-3 bg-primary-foreground/50 rounded-full" />
+        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
+            <div className="w-1.5 h-3 bg-white/50 rounded-full" />
           </div>
         </div>
       </section>  );
