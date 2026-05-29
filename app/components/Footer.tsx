@@ -1,52 +1,80 @@
-export default function Footer() {
+import type { Language } from "./types";
+
+interface FooterProps {
+  language: Language;
+}
+
+const footerServices = [
+  { labelEn: "Conversion websites", labelEs: "Sitios de conversión" },
+  { labelEn: "SME systems", labelEs: "Sistemas para PYMEs" },
+  { labelEn: "Sales funnels", labelEs: "Funnels de venta" },
+  { labelEn: "AI outreach", labelEs: "Prospección con IA" },
+];
+
+export default function Footer({ language }: FooterProps) {
+  const isSpanish = language === "es";
+
   return (
-    <footer className="w-full bg-[#020617] text-slate-200 py-12 px-4 scroll-reveal">
-      <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-[1.4fr,1fr,1fr]">
+    <footer className="w-full bg-[var(--color-night)] px-4 py-12 text-[var(--color-muted-on-dark)] sm:px-6 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 border-t border-[var(--color-line-on-dark)] pt-10 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <h3 className="text-xl font-bold mb-3">
-            <span className="text-[#3b82f6]">Scale Up</span> IA
-          </h3>
-          <p className="text-sm text-slate-400 mb-4">
-            Transformamos empresas PYMES en líderes de su industria con
-            tecnología, marketing digital e inteligencia artificial.
+          <p className="text-2xl font-black text-[var(--color-paper)]">
+            Scale Up <span className="text-[var(--color-cyan)]">AI</span>
           </p>
-          <div className="flex gap-3 mt-2">
-            <span className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 text-sm">
-              in
-            </span>
-            <span className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 text-sm">
-              X
-            </span>
-            <span className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 text-sm">
-              IG
-            </span>
-          </div>
+          <p className="mt-3 max-w-md text-sm leading-6">
+            {isSpanish
+              ? "Sistemas web, marketing y automatización para PYMEs que quieren crecer con más precisión."
+              : "Web systems, marketing, and automation for SMEs that want to grow with more precision."}
+          </p>
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold mb-3">Servicios</h4>
-          <ul className="space-y-2 text-sm text-slate-400">
-            <li>Desarrollo Web</li>
-            <li>Sistemas PYMES</li>
-            <li>Funnels de Venta</li>
-            <li>SEO &amp; Contenido</li>
+          <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-[var(--color-paper)]">
+            {isSpanish ? "Servicios" : "Services"}
+          </h3>
+          <ul className="mt-4 space-y-2 text-sm">
+            {footerServices.map((service) => (
+              <li key={service.labelEn}>
+                <a
+                  href="#servicios"
+                  className="inline-flex rounded-sm transition hover:text-[var(--color-paper)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-cyan)]"
+                >
+                  {isSpanish ? service.labelEs : service.labelEn}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold mb-3">Contacto</h4>
-          <ul className="space-y-2 text-sm text-slate-400">
-            <li>Scaleup-AI@outlook.com</li>
+          <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-[var(--color-paper)]">
+            {isSpanish ? "Contacto" : "Contact"}
+          </h3>
+          <ul className="mt-4 space-y-2 text-sm">
+            <li>
+              <a
+                className="hover:text-[var(--color-paper)]"
+                href="mailto:Scaleup-AI@outlook.com"
+              >
+                Scaleup-AI@outlook.com
+              </a>
+            </li>
             <li>Masaya, Nicaragua</li>
           </ul>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-8 pt-6 border-t border-slate-800 text-xs text-slate-500 flex flex-col md:flex-row items-center justify-between gap-3">
-        <span>© {new Date().getFullYear()} Scale Up IA. Todos los derechos reservados.</span>
-        <span className="text-slate-600">Hecho con tecnología e inteligencia artificial.</span>
+      <div className="mx-auto mt-8 flex max-w-7xl flex-col gap-3 text-xs text-[var(--color-muted-on-dark)] md:flex-row md:items-center md:justify-between">
+        <span>
+          © {new Date().getFullYear()} Scale Up AI.{" "}
+          {isSpanish ? "Todos los derechos reservados." : "All rights reserved."}
+        </span>
+        <span>
+          {isSpanish
+            ? "Hecho para empresas que quieren moverse más rápido."
+            : "Built for companies that want to move faster."}
+        </span>
       </div>
     </footer>
   );
 }
-

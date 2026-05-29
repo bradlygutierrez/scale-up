@@ -1,99 +1,108 @@
 'use client';
 
-import { useState } from "react";
-
-type Language = "en" | "es";
+import Image from "next/image";
+import { useState, type Dispatch, type SetStateAction } from "react";
+import type { Language } from "./types";
 
 interface MainNavbarProps {
   language: Language;
-  setLanguage: React.Dispatch<React.SetStateAction<Language>>;
+  setLanguage: Dispatch<SetStateAction<Language>>;
 }
+
+const navItems = [
+  { href: "#servicios", labelEn: "Services", labelEs: "Servicios" },
+  { href: "#ia-generativa", labelEn: "AI Engine", labelEs: "Motor IA" },
+  { href: "#contacto", labelEn: "Contact", labelEs: "Contacto" },
+];
 
 export default function MainNavbar({ language, setLanguage }: MainNavbarProps) {
   const [open, setOpen] = useState(false);
 
-  const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "en" ? "es" : "en"));
-  };
-
+  const isSpanish = language === "es";
+  const toggleLanguage = () =>
+    setLanguage((previous) => (previous === "en" ? "es" : "en"));
   const closeMenu = () => setOpen(false);
 
-  const navItems = [
-    { href: "#servicios", labelEn: "Services", labelEs: "Servicios" },
-    { href: "#ia-generativa", labelEn: "Gen AI", labelEs: "IA Generativa" },
-    { href: "#contacto", labelEn: "Contact", labelEs: "Contacto" },
-  ];
-
   return (
-    <nav className="w-full bg-[#020617] text-white sticky top-0 z-40 backdrop-blur-sm bg-opacity-90">
-      <div className="max-w-6xl mx-auto px-8 py-3 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <div className="flex items-center h-[4rem] p-5">
-            <div className="rotate-90">
-              <img
-                src="/LogoClaro.png"
-                className="w-[8rem] object-contain"
-              />
-            </div>
-          </div>
+    <nav className="sticky top-0 z-50 w-full border-b border-[var(--color-line-on-dark)] bg-[color:var(--color-nav)]/95 text-[var(--color-paper)] backdrop-blur-xl">
+      <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <a
+          href="#inicio"
+          aria-label="Scale Up AI home"
+          className="flex h-12 w-[154px] items-center overflow-hidden rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-cyan)]"
+          onClick={closeMenu}
+        >
+          <Image
+            src="/LogoClaro.png"
+            alt="Scale Up AI"
+            width={2481}
+            height={3508}
+            priority
+            className="h-[154px] w-[154px] -translate-y-px rotate-90 object-contain"
+            sizes="154px"
+          />
+        </a>
+
+        <div className="hidden items-center gap-2 md:flex">
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href} className="nav-link">
+              {isSpanish ? item.labelEs : item.labelEn}
+            </a>
+          ))}
         </div>
 
-        <div className="flex items-center gap-4 md:gap-6">
-          <ul className="hidden md:flex gap-4 items-center text-sm md:text-base font-medium">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  onClick={closeMenu}
-                  className="px-3 py-2 rounded-full hover:bg-slate-800 transition"
-                >
-                  {language === "en" ? item.labelEn : item.labelEs}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div className="flex items-center gap-3">
+          <a className="nav-cta hidden md:inline-flex" href="#contacto">
+            {isSpanish ? "Agendar" : "Book call"}
+          </a>
 
-          <button className="hidden sm:inline-flex bg-[#1D4ED8] hover:bg-blue-500 text-sm md:text-base font-semibold px-4 py-2 rounded-full transition">
-            {language === "en" ? "Book a call" : "Agenda una llamada"}
-          </button>
-
-          <div className="hidden sm:flex items-center gap-2 text-xs md:text-sm">
-            <span
-              className={language === "es" ? "text-blue-500" : "text-gray-400"}
-            >
+          <div className="hidden items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-muted-on-dark)] sm:flex">
+            <span className={isSpanish ? "text-[var(--color-paper)]" : ""}>
               ES
             </span>
             <button
+              type="button"
               onClick={toggleLanguage}
-              className={`relative w-12 h-6 rounded-full transition-colors duration-300
-              ${language === "en" ? "bg-[#1D4ED8]" : "bg-gray-500"}`}
+              aria-label={
+                isSpanish ? "Switch language to English" : "Cambiar idioma a español"
+              }
+              aria-pressed={language === "en"}
+              className="language-toggle"
             >
               <span
-                className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow-md
-                transition-transform duration-300
-                ${language === "en" ? "translate-x-5" : ""}`}
+                className={`language-thumb ${
+                  language === "en" ? "translate-x-5" : "translate-x-0"
+                }`}
               />
             </button>
-            <span
-              className={language === "en" ? "text-blue-500" : "text-gray-400"}
-            >
+            <span className={!isSpanish ? "text-[var(--color-paper)]" : ""}>
               EN
             </span>
           </div>
 
           <button
-            className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full border border-slate-700 hover:bg-slate-800 transition"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Abrir menú"
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--color-line-on-dark)] text-[var(--color-paper)] transition hover:border-[var(--color-cyan-muted)] hover:bg-[var(--color-ink-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-cyan)] md:hidden"
+            onClick={() => setOpen((value) => !value)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
           >
-            <span className="block w-4 h-[2px] bg-white rounded-full relative">
+            <span className="relative block h-4 w-5" aria-hidden="true">
               <span
-                className={`block w-4 h-[2px] bg-white rounded-full absolute -top-1.5 transition-transform ${open ? "translate-y-1.5 rotate-45" : ""
-                  }`}
+                className={`absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition ${
+                  open ? "translate-y-[7px] rotate-45" : ""
+                }`}
               />
               <span
-                className={`block w-4 h-[2px] bg-white rounded-full absolute top-1.5 transition-transform ${open ? "-translate-y-1.5 -rotate-45" : ""
-                  }`}
+                className={`absolute left-0 top-[7px] h-0.5 w-5 rounded-full bg-current transition ${
+                  open ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-[14px] h-0.5 w-5 rounded-full bg-current transition ${
+                  open ? "-translate-y-[7px] -rotate-45" : ""
+                }`}
               />
             </span>
           </button>
@@ -101,55 +110,33 @@ export default function MainNavbar({ language, setLanguage }: MainNavbarProps) {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-slate-800 bg-[#020617] bg-opacity-95 animate-fade-in-down">
-          <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-4">
-            <ul className="flex flex-col gap-2 text-sm font-medium">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    onClick={closeMenu}
-                    className="block px-3 py-2 rounded-lg hover:bg-slate-800 transition"
-                  >
-                    {language === "en" ? item.labelEn : item.labelEs}
-                  </a>
-                </li>
-              ))}
-            </ul>
+        <div
+          id="mobile-menu"
+          className="border-t border-[var(--color-line-on-dark)] bg-[var(--color-nav)] px-4 py-5 shadow-2xl md:hidden"
+        >
+          <div className="mx-auto flex max-w-7xl flex-col gap-3">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={closeMenu}
+                className="rounded-lg px-3 py-3 text-base font-semibold text-[var(--color-paper)] transition hover:bg-[var(--color-ink-soft)]"
+              >
+                {isSpanish ? item.labelEs : item.labelEn}
+              </a>
+            ))}
 
-            <button className="w-full inline-flex justify-center bg-[#1D4ED8] hover:bg-blue-500 text-sm font-semibold px-4 py-2 rounded-full transition">
-              {language === "en" ? "Book a call" : "Agenda una llamada"}
+            <a className="nav-cta justify-center" href="#contacto" onClick={closeMenu}>
+              {isSpanish ? "Agendar llamada" : "Book a call"}
+            </a>
+
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              className="flex h-11 items-center justify-center rounded-lg border border-[var(--color-line-on-dark)] text-sm font-bold text-[var(--color-paper)]"
+            >
+              {isSpanish ? "Switch to English" : "Cambiar a español"}
             </button>
-
-            <div className="flex items-center justify-between text-xs text-slate-300 pt-2 border-t border-slate-800 mt-2">
-              <div className="flex items-center gap-2">
-                <span
-                  className={
-                    language === "es" ? "text-blue-500" : "text-gray-400"
-                  }
-                >
-                  ES
-                </span>
-                <button
-                  onClick={toggleLanguage}
-                  className={`relative w-12 h-6 rounded-full transition-colors duration-300
-                  ${language === "en" ? "bg-[#1D4ED8]" : "bg-gray-500"}`}
-                >
-                  <span
-                    className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow-md
-                    transition-transform duration-300
-                    ${language === "en" ? "translate-x-5" : ""}`}
-                  />
-                </button>
-                <span
-                  className={
-                    language === "en" ? "text-blue-500" : "text-gray-400"
-                  }
-                >
-                  EN
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       )}

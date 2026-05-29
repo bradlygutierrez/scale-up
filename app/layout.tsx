@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Scale Up AI",
-  description: "A platform to help you scale your business with cutting-edge AI tools and resources.",
+  description:
+    "High-performance websites, sales funnels, and AI automations for growing SMEs.",
 };
 
 export default function RootLayout({
@@ -23,9 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-      </head>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

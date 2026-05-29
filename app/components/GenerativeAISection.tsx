@@ -1,99 +1,106 @@
+import type { Language } from "./types";
+
 interface GenerativeAISectionProps {
-  language: "en" | "es";
+  language: Language;
 }
 
-export default function GenerativeAISection({ language }: GenerativeAISectionProps) {
+const stages = {
+  en: [
+    ["01", "Signal", "Campaign, search, and CRM data are cleaned into one growth view."],
+    ["02", "Decision", "AI spots intent, drafts next actions, and routes each lead."],
+    ["03", "Execution", "Messages, landing variants, and reports move automatically."],
+  ],
+  es: [
+    ["01", "Señal", "Datos de campañas, búsquedas y CRM se ordenan en una vista de crecimiento."],
+    ["02", "Decisión", "La IA detecta intención, redacta acciones y enruta cada lead."],
+    ["03", "Ejecución", "Mensajes, variantes de landing y reportes avanzan automáticamente."],
+  ],
+};
+
+export default function GenerativeAISection({
+  language,
+}: GenerativeAISectionProps) {
   const isSpanish = language === "es";
 
   return (
     <section
       id="ia-generativa"
-      className="w-full bg-[#020f2a] py-20 px-4 scroll-reveal"
-      aria-labelledby="ia-heading"
+      className="scroll-reveal relative isolate w-full scroll-mt-24 overflow-hidden bg-[var(--color-night)] px-4 py-20 text-[var(--color-paper)] sm:px-6 lg:px-8 lg:py-28"
+      aria-labelledby="ai-heading"
     >
-      <div className="max-w-6xl mx-auto text-white">
-        <div className="mb-10">
-          <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-blue-900/60 border border-blue-500/40 text-xs font-medium text-blue-100 mb-4">
-            {isSpanish ? "Inteligencia Artificial" : "Artificial Intelligence"}
-          </span>
-          <h2
-            id="ia-heading"
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
-          >
-            {isSpanish ? (
-              <>
-                Potencia tu marketing con{" "}
-                <span className="text-[#3b82f6]">Generative AI</span>
-              </>
-            ) : (
-              <>
-                Boost your marketing with{" "}
-                <span className="text-[#3b82f6]">Generative AI</span>
-              </>
-            )}
-          </h2>
-          <p className="text-slate-200 max-w-3xl text-base md:text-lg">
-            {isSpanish
-              ? "Aprovecha el poder de la inteligencia artificial para crear contenido único, automatizar procesos y escalar tus resultados de marketing sin aumentar tu equipo."
-              : "Leverage artificial intelligence to create unique content, automate processes and scale your marketing results without growing your team."}
+      <div className="section-orbit" aria-hidden="true" />
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-center">
+        <div>
+          <p className="section-kicker-dark">
+            {isSpanish ? "Motor de IA generativa" : "Generative AI engine"}
           </p>
+          <h2
+            id="ai-heading"
+            className="max-w-3xl text-[clamp(2.2rem,5vw,5rem)] font-black leading-[0.98] text-[var(--color-paper)]"
+          >
+            {isSpanish
+              ? "Automatización que se siente como tener otro equipo."
+              : "Automation that feels like another team on payroll."}
+          </h2>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--color-muted-on-dark)]">
+            {isSpanish
+              ? "No vendemos IA como truco. La instalamos donde hace dinero: captación, seguimiento, contenido, reportes y decisiones comerciales."
+              : "We do not sell AI as a trick. We install it where it makes money: acquisition, follow-up, content, reporting, and commercial decisions."}
+          </p>
+          <a href="#contacto" className="btn-primary mt-8">
+            {isSpanish ? "Implementar IA" : "Implement AI"}
+          </a>
         </div>
 
-        <div className="grid gap-10 md:grid-cols-[1.2fr,1fr] items-start mb-12">
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-wrap gap-8 text-slate-100">
-              <div>
-                <p className="text-3xl md:text-4xl font-bold">10x</p>
-                <p className="text-sm text-slate-300">
-                  {isSpanish ? "Más rápido" : "Faster"}
-                </p>
-              </div>
-              <div>
-                <p className="text-3xl md:text-4xl font-bold">70%</p>
-                <p className="text-sm text-slate-300">
-                  {isSpanish ? "Menos costos" : "Lower costs"}
-                </p>
-              </div>
-              <div>
-                <p className="text-3xl md:text-4xl font-bold">∞</p>
-                <p className="text-sm text-slate-300">
-                  {isSpanish ? "Variaciones" : "Variations"}
-                </p>
-              </div>
+        <div className="ai-system">
+          <div className="ai-system-header">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-[var(--color-lime)]">
+                {isSpanish ? "Sistema activo" : "System online"}
+              </p>
+              <h3 className="mt-2 text-2xl font-black">
+                {isSpanish ? "Growth loop" : "Growth loop"}
+              </h3>
             </div>
-
-            <button className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-sm md:text-base font-semibold text-white shadow-lg shadow-blue-700/40 transition">
-              {isSpanish
-                ? "Implementar IA en mi negocio"
-                : "Implement AI in my business"}
-            </button>
+            <div className="signal-stack" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
           </div>
 
-          <div className="grid gap-4">
-            <div className="bg-[#02081a]/80 border border-slate-800 rounded-2xl p-5 md:p-6">
-              <p className="text-sm font-semibold text-slate-300 mb-1">
-                {isSpanish ? "Creación de Anuncios" : "Ad Creation"}
-              </p>
-              <p className="text-sm text-slate-400">
-                {isSpanish
-                  ? "Genera creativos publicitarios únicos para tus campañas con IA."
-                  : "Generate unique ad creatives for your campaigns with AI."}
-              </p>
-            </div>
-            <div className="bg-[#02081a]/80 border border-slate-800 rounded-2xl p-5 md:p-6">
-              <p className="text-sm font-semibold text-slate-300 mb-1">
-                {isSpanish ? "Copywriting IA" : "AI Copywriting"}
-              </p>
-              <p className="text-sm text-slate-400">
-                {isSpanish
-                  ? "Textos persuasivos para ads, emails y landing pages."
-                  : "Persuasive copy for ads, emails and landing pages."}
-              </p>
-            </div>
+          <div className="mt-6 grid gap-3">
+            {stages[language].map(([number, title, description]) => (
+              <div key={number} className="ai-stage">
+                <span className="text-sm font-black text-[var(--color-cyan)]">
+                  {number}
+                </span>
+                <div>
+                  <p className="text-lg font-black text-[var(--color-paper)]">
+                    {title}
+                  </p>
+                  <p className="mt-1 text-sm leading-6 text-[var(--color-muted-on-dark)]">
+                    {description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {[
+              isSpanish ? "Copy listo" : "Copy ready",
+              isSpanish ? "Lead puntuado" : "Lead scored",
+              isSpanish ? "Reporte enviado" : "Report sent",
+            ].map((item) => (
+              <div key={item} className="status-tile">
+                <span className="h-2 w-2 rounded-full bg-[var(--color-lime)]" />
+                {item}
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </section>
   );
 }
-

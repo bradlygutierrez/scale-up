@@ -1,127 +1,106 @@
+import type { Language } from "./types";
+
 interface ServicesSectionProps {
-  language: "en" | "es";
+  language: Language;
 }
+
+const services = [
+  {
+    titleEn: "Conversion websites",
+    titleEs: "Sitios de conversión",
+    descEn:
+      "Landing pages and corporate sites with a clear offer, sharp copy, fast loading, and analytics from day one.",
+    descEs:
+      "Landing pages y sitios corporativos con oferta clara, copy preciso, carga rápida y analítica desde el primer día.",
+    tagsEn: ["UX", "SEO", "Analytics"],
+    tagsEs: ["UX", "SEO", "Analítica"],
+  },
+  {
+    titleEn: "SME operating systems",
+    titleEs: "Sistemas para PYMEs",
+    descEn:
+      "Lean internal tools for follow-up, quoting, reporting, and repetitive workflows your team should not do by hand.",
+    descEs:
+      "Herramientas internas ligeras para seguimiento, cotizaciones, reportes y tareas repetitivas que tu equipo no debería hacer a mano.",
+    tagsEn: ["CRM", "Dashboards", "Automations"],
+    tagsEs: ["CRM", "Dashboards", "Automatizaciones"],
+  },
+  {
+    titleEn: "Sales funnels",
+    titleEs: "Funnels de venta",
+    descEn:
+      "Lead capture, nurture flows, and sales handoff systems that keep prospects moving without losing context.",
+    descEs:
+      "Captura de leads, secuencias de nutrición y handoff comercial para mover prospectos sin perder contexto.",
+    tagsEn: ["Lead gen", "Email", "Retargeting"],
+    tagsEs: ["Lead gen", "Email", "Retargeting"],
+  },
+  {
+    titleEn: "AI-powered outreach",
+    titleEs: "Prospección con IA",
+    descEn:
+      "Personalized B2B campaigns with better targeting, stronger messages, and cleaner follow-up loops.",
+    descEs:
+      "Campañas B2B personalizadas con mejor segmentación, mensajes más fuertes y seguimiento ordenado.",
+    tagsEn: ["LinkedIn", "Cold email", "WhatsApp"],
+    tagsEs: ["LinkedIn", "Cold email", "WhatsApp"],
+  },
+];
 
 export default function ServicesSection({ language }: ServicesSectionProps) {
   const isSpanish = language === "es";
 
-  const services = [
-    {
-      icon: "🌐",
-      titleEs: "Desarrollo Web",
-      titleEn: "Web Development",
-      descEs:
-        "Sitios web corporativos y landing pages optimizadas para conversión.",
-      descEn:
-        "Corporate websites and high‑converting landing pages tailored to your brand.",
-      bulletsEs: [
-        "Diseño responsive",
-        "SEO técnico",
-        "Integraciones con herramientas de marketing",
-      ],
-      bulletsEn: ["Responsive design", "Technical SEO", "Marketing tools integrations"],
-    },
-    {
-      icon: "📊",
-      titleEs: "Sistemas PYMES",
-      titleEn: "SME Systems",
-      descEs: "Soluciones digitales personalizadas para automatizar tu negocio.",
-      descEn: "Custom digital solutions to automate and streamline your operations.",
-      bulletsEs: ["CRM integrado", "Facturación y reportes", "Automatización de tareas repetitivas"],
-      bulletsEn: ["Integrated CRM", "Invoicing and reporting", "Automation of repetitive tasks"],
-    },
-    {
-      icon: "📈",
-      titleEs: "Funnels de Venta",
-      titleEn: "Sales Funnels",
-      descEs: "Embudos de conversión que transforman visitantes en clientes.",
-      descEn: "Conversion funnels that turn visitors into paying customers.",
-      bulletsEs: ["Landing pages", "Email sequences", "Automatización"],
-      bulletsEn: ["Landing pages", "Email sequences", "Automation"],
-    },
-    {
-      icon: "✉️",
-      titleEs: "Outreach & Email",
-      titleEn: "Outreach & Email",
-      descEs:
-        "Campañas de prospección B2B automatizadas y personalizadas.",
-      descEn:
-        "Automated, personalized B2B outbound campaigns.",
-      bulletsEs: ["Cold email", "LinkedIn", "Seguimiento automático"],
-      bulletsEn: ["Cold email", "LinkedIn", "Automated follow‑up"],
-    },
-    {
-      icon: "🔍",
-      titleEs: "SEO & Contenido",
-      titleEn: "SEO & Content",
-      descEs: "Posicionamiento orgánico para atraer tráfico cualificado.",
-      descEn: "Organic growth to attract qualified traffic.",
-      bulletsEs: ["Estrategia de contenidos", "Blog y recursos", "Optimización on‑page"],
-      bulletsEn: ["Content strategy", "Blog & resources", "On‑page optimization"],
-    },
-  ];
-
   return (
     <section
       id="servicios"
-      className="w-full bg-slate-50 py-20 px-4 scroll-reveal"
+      className="scroll-reveal w-full scroll-mt-24 bg-[var(--color-surface)] px-4 py-20 sm:px-6 lg:px-8 lg:py-28"
       aria-labelledby="services-heading"
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12 scroll-reveal">
-          <p className="text-sm font-semibold tracking-[0.25em] text-blue-600 mb-3">
-            {isSpanish ? "NUESTROS SERVICIOS" : "OUR SERVICES"}
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.78fr_1.22fr]">
+        <div className="max-w-xl">
+          <p className="section-kicker">
+            {isSpanish ? "Servicios" : "Services"}
           </p>
-          <h2
-            id="services-heading"
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4"
-          >
-            {isSpanish ? (
-              <>
-                Soluciones digitales para{" "}
-                <span className="text-blue-600">escalar tu negocio</span>
-              </>
-            ) : (
-              <>
-                Digital solutions to{" "}
-                <span className="text-blue-600">scale your business</span>
-              </>
-            )}
-          </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto text-base md:text-lg">
+          <h2 id="services-heading" className="section-title">
             {isSpanish
-              ? "Combinamos tecnología de punta con estrategias probadas para impulsar el crecimiento de tu empresa."
-              : "We combine cutting‑edge technology with proven strategies to accelerate your company’s growth."}
+              ? "Lo que necesita tu crecimiento para dejar de improvisar."
+              : "What your growth needs to stop improvising."}
+          </h2>
+          <p className="section-lead mt-5">
+            {isSpanish
+              ? "Unimos producto, marketing y automatización en sistemas que se pueden medir. Menos piezas sueltas, más movimiento comercial."
+              : "We connect product, marketing, and automation into systems you can measure. Fewer loose pieces, more commercial movement."}
           </p>
+          <a href="#contacto" className="btn-dark mt-8">
+            {isSpanish ? "Diseñar mi sistema" : "Design my system"}
+          </a>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <article
-              key={service.titleEs}
-              className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 hover:shadow-md transition-shadow flex flex-col justify-between scroll-reveal"
-            >
+        <div className="service-lanes">
+          {services.map((service, index) => (
+            <article key={service.titleEn} className="service-lane">
+              <div className="service-number">0{index + 1}</div>
               <div>
-                <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
-                  <span className="text-2xl">{service.icon}</span>
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                <h3 className="text-2xl font-black text-[var(--color-ink)]">
                   {isSpanish ? service.titleEs : service.titleEn}
                 </h3>
-                <p className="text-slate-600 mb-4">
+                <p className="mt-3 max-w-2xl text-base leading-7 text-[var(--color-muted)]">
                   {isSpanish ? service.descEs : service.descEn}
                 </p>
-                <ul className="space-y-1 text-sm text-slate-600 mb-4">
-                  {(isSpanish ? service.bulletsEs : service.bulletsEn).map(
-                    (item) => (
-                      <li key={item}>• {item}</li>
-                    )
-                  )}
-                </ul>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {(isSpanish ? service.tagsEs : service.tagsEn).map((tag) => (
+                    <span key={tag} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <button className="mt-2 text-sm font-semibold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1">
-                {isSpanish ? "Saber más" : "Learn more"} <span>→</span>
-              </button>
+              <a
+                href="#contacto"
+                className="self-start rounded-lg border border-[var(--color-line)] px-4 py-3 text-sm font-bold text-[var(--color-ink)] transition hover:border-[var(--color-blue)] hover:text-[var(--color-blue)]"
+              >
+                {isSpanish ? "Activar" : "Activate"}
+              </a>
             </article>
           ))}
         </div>
@@ -129,4 +108,3 @@ export default function ServicesSection({ language }: ServicesSectionProps) {
     </section>
   );
 }
-
